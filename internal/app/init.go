@@ -9,17 +9,16 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/Shemistan/uzum_auth/docs"
-	auth_system_v1 "github.com/Shemistan/uzum_auth/internal/api/auth_v1"
-	login_system_v1 "github.com/Shemistan/uzum_auth/internal/api/login_v1"
+	"github.com/bakhtiyor-y/auth/docs"
+	auth_system_v1 "github.com/bakhtiyor-y/auth/internal/api/auth_v1"
+	login_system_v1 "github.com/bakhtiyor-y/auth/internal/api/login_v1"
 
-	pb_auth "github.com/Shemistan/uzum_auth/pkg/auth_v1"
-	pb_login "github.com/Shemistan/uzum_auth/pkg/login_v1"
+	pb_auth "github.com/bakhtiyor-y/auth/pkg/auth_v1"
+	pb_login "github.com/bakhtiyor-y/auth/pkg/login_v1"
 )
 
 func (a *App) initDB() {
 	sqlConnectionString := a.getSqlConnectionString()
-	log.Println("--->>> ", sqlConnectionString)
 	var err error
 	a.db, err = sqlx.Open("postgres", sqlConnectionString)
 	if err != nil {

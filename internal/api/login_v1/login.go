@@ -2,9 +2,9 @@ package login_v1
 
 import (
 	"context"
-	"github.com/Shemistan/uzum_auth/internal/models"
-	"github.com/Shemistan/uzum_auth/internal/service/login_v1"
-	pb "github.com/Shemistan/uzum_auth/pkg/login_v1"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	"github.com/bakhtiyor-y/auth/internal/service/login_v1"
+	pb "github.com/bakhtiyor-y/auth/pkg/login_v1"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

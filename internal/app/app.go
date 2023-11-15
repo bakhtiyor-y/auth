@@ -3,7 +3,7 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/Shemistan/uzum_auth/internal/service/login_v1"
+	"github.com/bakhtiyor-y/auth/internal/service/login_v1"
 	"log"
 	"runtime"
 
@@ -14,11 +14,11 @@ import (
 	"github.com/mvrilo/go-redoc"
 	"google.golang.org/grpc"
 
-	"github.com/Shemistan/uzum_auth/dev"
-	"github.com/Shemistan/uzum_auth/internal/models"
-	auth_system "github.com/Shemistan/uzum_auth/internal/service/auth_v1"
-	login_system "github.com/Shemistan/uzum_auth/internal/service/login_v1"
-	"github.com/Shemistan/uzum_auth/internal/storage/postgresql"
+	"github.com/bakhtiyor-y/auth/dev"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	auth_system "github.com/bakhtiyor-y/auth/internal/service/auth_v1"
+	login_system "github.com/bakhtiyor-y/auth/internal/service/login_v1"
+	"github.com/bakhtiyor-y/auth/internal/storage/postgresql"
 )
 
 type App struct {

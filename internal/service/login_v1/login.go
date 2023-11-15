@@ -3,10 +3,10 @@ package login_v1
 import (
 	"context"
 	"errors"
-	"github.com/Shemistan/uzum_auth/internal/models"
-	s "github.com/Shemistan/uzum_auth/internal/storage"
-	"github.com/Shemistan/uzum_auth/internal/utils/hasher"
-	"github.com/Shemistan/uzum_auth/internal/utils/jwt"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	s "github.com/bakhtiyor-y/auth/internal/storage"
+	"github.com/bakhtiyor-y/auth/internal/utils/hasher"
+	"github.com/bakhtiyor-y/auth/internal/utils/jwt"
 	"log"
 )
 

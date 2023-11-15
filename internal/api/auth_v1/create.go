@@ -3,8 +3,8 @@ package auth_v1
 import (
 	"context"
 
-	"github.com/Shemistan/uzum_auth/internal/models"
-	pb "github.com/Shemistan/uzum_auth/pkg/auth_v1"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	pb "github.com/bakhtiyor-y/auth/pkg/auth_v1"
 )
 
 func (a *Auth) Create(ctx context.Context, req *pb.Create_Request) (*pb.Create_Response, error) {

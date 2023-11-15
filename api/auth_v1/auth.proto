@@ -8,7 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/api/validate.proto";
 
-option go_package = "github.com/Shemistan/uzum_auth/pkg/auth_v1;auth_v1";
+option go_package = "github.com/bakhtiyor-y/auth/pkg/auth_v1;auth_v1";
 
 service AuthV1 {
   rpc GetUser(GetUser.Request) returns (GetUser.Response);

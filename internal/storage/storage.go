@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 
-	"github.com/Shemistan/uzum_auth/internal/models"
+	"github.com/bakhtiyor-y/auth/internal/models"
 )
 
 type IStorage interface {

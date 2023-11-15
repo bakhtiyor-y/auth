@@ -2,9 +2,9 @@ package auth_v1
 
 import (
 	"context"
-	"github.com/Shemistan/uzum_auth/internal/models"
-	repo "github.com/Shemistan/uzum_auth/internal/storage"
-	"github.com/Shemistan/uzum_auth/internal/utils/hasher"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	repo "github.com/bakhtiyor-y/auth/internal/storage"
+	"github.com/bakhtiyor-y/auth/internal/utils/hasher"
 	"log"
 )
 

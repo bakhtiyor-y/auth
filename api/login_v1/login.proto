@@ -5,7 +5,7 @@ package login_v1;
 import "google/api/validate.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/Shemistan/uzum_auth/pkg/login_v1;login_v1";
+option go_package = "github.com/bakhtiyor-y/auth/pkg/login_v1;login_v1";
 
 service LoginV1{
   rpc Login (Login.Request) returns (Login.Response);

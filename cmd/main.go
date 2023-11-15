@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/Shemistan/uzum_auth/internal/app"
+	"github.com/bakhtiyor-y/auth/internal/app"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package auth_v1
 
 import (
-	auth_system "github.com/Shemistan/uzum_auth/internal/service/auth_v1"
-	pb "github.com/Shemistan/uzum_auth/pkg/auth_v1"
+	auth_system "github.com/bakhtiyor-y/auth/internal/service/auth_v1"
+	pb "github.com/bakhtiyor-y/auth/pkg/auth_v1"
 )
 
 type Auth struct {

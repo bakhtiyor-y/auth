@@ -5,8 +5,8 @@ import (
 	sq "github.com/Masterminds/squirrel"
 	"github.com/jmoiron/sqlx"
 
-	"github.com/Shemistan/uzum_auth/internal/models"
-	s "github.com/Shemistan/uzum_auth/internal/storage"
+	"github.com/bakhtiyor-y/auth/internal/models"
+	s "github.com/bakhtiyor-y/auth/internal/storage"
 )
 
 const tableName = "userstable"

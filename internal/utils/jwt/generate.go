@@ -6,7 +6,7 @@ import (
 
 	"github.com/golang-jwt/jwt"
 
-	"github.com/Shemistan/uzum_auth/internal/models"
+	"github.com/bakhtiyor-y/auth/internal/models"
 )
 
 const (
