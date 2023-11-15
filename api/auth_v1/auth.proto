@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package auth_v1;
+
+//import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+//import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+import "google/api/validate.proto";
+
+option go_package = "github.com/Shemistan/uzum_auth/pkg/auth_v1;auth_v1";
+
+service AuthV1 {
+  rpc GetUser(GetUser.Request) returns (GetUser.Response);
+  rpc GetUsers(GetUsers.Request) returns (GetUsers.Response);
+  rpc GetAllUsers(google.protobuf.Empty) returns (GetAllUsers.Response);
+  rpc Delete(Delete.Request) returns (google.protobuf.Empty);
+
+  rpc Create(Create.Request) returns (Create.Response){
+    option (google.api.http) = {
+      post: "/auth_v1/create"
+      body: "*"
+    };
+  }
+
+  rpc Update(Update.Request) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/auth_v1/update"
+      body: "*"
+    };
+  }
+
+  rpc Healthz(google.protobuf.Empty) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      get: "/auth_v1/healthz"
+    };
+  }
+}
+
+message Update {
+  message Request{
+    User user = 1;
+  }
+}
+
+
+message Delete {
+  message Request{
+    uint32 id = 1;
+  }
+}
+
+
+
+message GetUser {
+  message Request{
+    uint32 id = 1;
+  }
+
+  message Response{
+    User user = 1;
+  }
+}
+
+
+message GetUsers {
+  message Request{
+    repeated uint32 id = 1;
+  }
+
+  message Response{
+    repeated User user = 1;
+  }
+}
+
+
+message GetAllUsers {
+  message Response{
+    repeated User user = 1;
+  }
+}
+
+message Create {
+  message Request{
+    AuthUser login_password = 1;
+    User user = 2;
+  }
+
+  message Response{
+  }
+}
+
+message AuthUser {
+  string login = 1 [(validate.rules).string.email = true];
+  string password = 2 [(validate.rules).string = {min_len: 4, max_len: 40}];
+}
+
+message User {
+  string id = 1;
+  string role = 3;
+  string name = 4;
+  string surname = 5;
+  string phone = 6;
+  string address = 7;
+  Coordinate coordinate_address = 8;
+}
+
+message Coordinate {
+  double x = 1;
+  double y = 2;
+}
