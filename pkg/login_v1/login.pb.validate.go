@@ -1296,44 +1296,46 @@ var _ interface {
 	ErrorName() string
 } = GetAccessToken_ResponseValidationError{}
 
-// Validate checks the field values on Check_Request with the rules defined in
+// Validate checks the field values on Check_Response with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *Check_Request) Validate() error {
+func (m *Check_Response) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on Check_Request with the rules defined
+// ValidateAll checks the field values on Check_Response with the rules defined
 // in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in Check_RequestMultiError, or
-// nil if none found.
-func (m *Check_Request) ValidateAll() error {
+// result is a list of violation errors wrapped in Check_ResponseMultiError,
+// or nil if none found.
+func (m *Check_Response) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *Check_Request) validate(all bool) error {
+func (m *Check_Response) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	// no validation rules for EndpointAddress
+	// no validation rules for Login
+
+	// no validation rules for UserId
 
 	if len(errors) > 0 {
-		return Check_RequestMultiError(errors)
+		return Check_ResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// Check_RequestMultiError is an error wrapping multiple validation errors
-// returned by Check_Request.ValidateAll() if the designated constraints
+// Check_ResponseMultiError is an error wrapping multiple validation errors
+// returned by Check_Response.ValidateAll() if the designated constraints
 // aren't met.
-type Check_RequestMultiError []error
+type Check_ResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m Check_RequestMultiError) Error() string {
+func (m Check_ResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1342,11 +1344,11 @@ func (m Check_RequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m Check_RequestMultiError) AllErrors() []error { return m }
+func (m Check_ResponseMultiError) AllErrors() []error { return m }
 
-// Check_RequestValidationError is the validation error returned by
-// Check_Request.Validate if the designated constraints aren't met.
-type Check_RequestValidationError struct {
+// Check_ResponseValidationError is the validation error returned by
+// Check_Response.Validate if the designated constraints aren't met.
+type Check_ResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1354,22 +1356,22 @@ type Check_RequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e Check_RequestValidationError) Field() string { return e.field }
+func (e Check_ResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e Check_RequestValidationError) Reason() string { return e.reason }
+func (e Check_ResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e Check_RequestValidationError) Cause() error { return e.cause }
+func (e Check_ResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e Check_RequestValidationError) Key() bool { return e.key }
+func (e Check_ResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e Check_RequestValidationError) ErrorName() string { return "Check_RequestValidationError" }
+func (e Check_ResponseValidationError) ErrorName() string { return "Check_ResponseValidationError" }
 
 // Error satisfies the builtin error interface
-func (e Check_RequestValidationError) Error() string {
+func (e Check_ResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1381,14 +1383,14 @@ func (e Check_RequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCheck_Request.%s: %s%s",
+		"invalid %sCheck_Response.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = Check_RequestValidationError{}
+var _ error = Check_ResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1396,4 +1398,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = Check_RequestValidationError{}
+} = Check_ResponseValidationError{}

@@ -19,4 +19,6 @@ type IStorage interface {
 	GetUser(ctx context.Context, login string) (*models.User, error)
 	GetUsers(ctx context.Context, logins []string) ([]*models.User, error)
 	GetAllUsers(ctx context.Context) ([]*models.User, error)
+
+	GetUserId(ctx context.Context, login string) (int, error)
 }

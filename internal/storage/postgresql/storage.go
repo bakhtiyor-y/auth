@@ -9,7 +9,7 @@ import (
 	s "github.com/bakhtiyor-y/auth/internal/storage"
 )
 
-const tableName = "userstable"
+const tableName = "user"
 
 type storage struct {
 	db *sqlx.DB
@@ -117,7 +117,7 @@ func (s *storage) ChangePassword(ctx context.Context, req *models.AuthUser) erro
 
 func (s *storage) GetUser(ctx context.Context, login string) (*models.User, error) {
 	var user models.User
-	q := sq.Select("name", "surname", "phone",
+	q := sq.Select("id", "name", "surname", "phone", "login",
 		"role", "address", "coordinate_address_x",
 		"coordinate_address_y").
 		From(tableName).
@@ -126,7 +126,7 @@ func (s *storage) GetUser(ctx context.Context, login string) (*models.User, erro
 		PlaceholderFormat(sq.Dollar)
 
 	err := q.QueryRowContext(ctx).
-		Scan(&user.Name, &user.Surname, &user.Phone,
+		Scan(&user.Id, &user.Name, &user.Surname, &user.Phone,
 			&user.Role, &user.Address, &user.AddressCoordinate.X,
 			&user.AddressCoordinate.Y)
 
@@ -161,4 +161,22 @@ func (s *storage) GetPassword(ctx context.Context, login string) (string, error)
 	}
 
 	return passwordHash, nil
+}
+
+func (s *storage) GetUserId(ctx context.Context, login string) (int, error) {
+	var id int
+	q := sq.Select("id").
+		From(tableName).
+		Where(sq.Eq{"login": login}).
+		RunWith(s.db).
+		PlaceholderFormat(sq.Dollar)
+
+	err := q.QueryRowContext(ctx).
+		Scan(&id)
+
+	if err != nil {
+		return -1, err
+	}
+
+	return id, nil
 }

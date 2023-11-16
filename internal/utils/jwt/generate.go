@@ -14,13 +14,13 @@ const (
 	refreshTTL = time.Hour * 24 * 365
 )
 
-func GenerateTokens(login, role, secretKey string) (models.Token, error) {
+func GenerateTokens(login, userId, secretKey string) (models.Token, error) {
 	var res models.Token
 
 	// Генерация Access Token
 	accessClaims := models.CustomClaims{
 		Login: login,
-		Role:  role,
+		UserId:  userId,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(accessTTL).Unix(), // Срок действия токена
 		},
@@ -35,7 +35,7 @@ func GenerateTokens(login, role, secretKey string) (models.Token, error) {
 	// Генерация Refresh Token
 	refreshClaims := models.CustomClaims{
 		Login: login,
-		Role:  role,
+		UserId:  userId,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(refreshTTL).Unix(), // Срок действия токена
 		},

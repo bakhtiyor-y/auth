@@ -5,7 +5,9 @@ import (
 	"github.com/bakhtiyor-y/auth/internal/models"
 	"github.com/bakhtiyor-y/auth/internal/service/login_v1"
 	pb "github.com/bakhtiyor-y/auth/pkg/login_v1"
-	"google.golang.org/protobuf/types/known/emptypb"
+	"github.com/golang/protobuf/ptypes/empty"
+	"google.golang.org/grpc/metadata"
+	"log"
 )
 
 type Login struct {
@@ -30,11 +32,21 @@ func (s *Login) Login(ctx context.Context, req *pb.Login_Request) (*pb.Login_Res
 	}, nil
 }
 
-func (s *Login) Check(ctx context.Context, _ *pb.Check_Request) (*emptypb.Empty, error) {
-	err := s.Service.Check(ctx)
+func (s *Login) Check(ctx context.Context, _ *empty.Empty) (*pb.Check_Response, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		log.Println("No metadata found in context")
+	}
+
+	tokens := md.Get("authorization")
+	if len(tokens) == 0 {
+		log.Println("No authorization token found in metadata")
+	}
+
+	resp, err := s.Service.Check(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	return &emptypb.Empty{}, nil
+	return resp, nil
 }

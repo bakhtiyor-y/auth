@@ -26,7 +26,7 @@ type LoginV1Client interface {
 	Login(ctx context.Context, in *Login_Request, opts ...grpc.CallOption) (*Login_Response, error)
 	GetRefreshToken(ctx context.Context, in *GetRefreshToken_Request, opts ...grpc.CallOption) (*GetRefreshToken_Response, error)
 	GetAccessToken(ctx context.Context, in *GetAccessToken_Request, opts ...grpc.CallOption) (*GetAccessToken_Response, error)
-	Check(ctx context.Context, in *Check_Request, opts ...grpc.CallOption) (*empty.Empty, error)
+	Check(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Check_Response, error)
 }
 
 type loginV1Client struct {
@@ -64,8 +64,8 @@ func (c *loginV1Client) GetAccessToken(ctx context.Context, in *GetAccessToken_R
 	return out, nil
 }
 
-func (c *loginV1Client) Check(ctx context.Context, in *Check_Request, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *loginV1Client) Check(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*Check_Response, error) {
+	out := new(Check_Response)
 	err := c.cc.Invoke(ctx, "/login_v1.LoginV1/Check", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ type LoginV1Server interface {
 	Login(context.Context, *Login_Request) (*Login_Response, error)
 	GetRefreshToken(context.Context, *GetRefreshToken_Request) (*GetRefreshToken_Response, error)
 	GetAccessToken(context.Context, *GetAccessToken_Request) (*GetAccessToken_Response, error)
-	Check(context.Context, *Check_Request) (*empty.Empty, error)
+	Check(context.Context, *empty.Empty) (*Check_Response, error)
 	mustEmbedUnimplementedLoginV1Server()
 }
 
@@ -97,7 +97,7 @@ func (UnimplementedLoginV1Server) GetRefreshToken(context.Context, *GetRefreshTo
 func (UnimplementedLoginV1Server) GetAccessToken(context.Context, *GetAccessToken_Request) (*GetAccessToken_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAccessToken not implemented")
 }
-func (UnimplementedLoginV1Server) Check(context.Context, *Check_Request) (*empty.Empty, error) {
+func (UnimplementedLoginV1Server) Check(context.Context, *empty.Empty) (*Check_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedLoginV1Server) mustEmbedUnimplementedLoginV1Server() {}
@@ -168,7 +168,7 @@ func _LoginV1_GetAccessToken_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _LoginV1_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Check_Request)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -180,7 +180,7 @@ func _LoginV1_Check_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: "/login_v1.LoginV1/Check",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LoginV1Server).Check(ctx, req.(*Check_Request))
+		return srv.(LoginV1Server).Check(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
